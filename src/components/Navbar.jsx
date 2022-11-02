@@ -9,6 +9,7 @@ const Navbar = () => {
       <div className='user'>
         <img src=''  alt=''/>
         <span>jhon</span>
+        //test
         <button>logout</button>
       </div>
     </div>
