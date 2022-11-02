@@ -10,6 +10,7 @@ const Chats = () => {
                     <p>Hello</p>
             </div>
         </div>
+
        <div className='userChat'>
             <img src='https://i11.haber7.net//haber/haber7/photos/2020/53/Ues00_1609399241_7764.jpg' alt=''/>
             <div className='userChatInfo'>
@@ -17,6 +18,7 @@ const Chats = () => {
                     <p>Hello</p>
             </div>
         </div>
+
        <div className='userChat'>
             <img src='https://i11.haber7.net//haber/haber7/photos/2020/53/Ues00_1609399241_7764.jpg' alt=''/>
             <div className='userChatInfo'>
@@ -24,6 +26,9 @@ const Chats = () => {
                     <p>Hello</p>
             </div>
         </div>
+
+        
+
     </div>
 
 
