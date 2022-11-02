@@ -4,8 +4,11 @@ import Add from "../img/addimage.png"
 const Register = () => {
 
   const handleSubmit = (e) =>{
-    e.preventDefault();
-
+    e.preventDefault(); // do not refresh the page 
+    const displayName = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    const file = e.target[3].value;
   }
 
 
