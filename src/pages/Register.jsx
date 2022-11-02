@@ -2,6 +2,13 @@ import React from 'react'
 import Add from "../img/addimage.png"
 
 const Register = () => {
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+
+  }
+
+
   return (
     <div>
       <div className='formContainer'>
@@ -9,7 +16,7 @@ const Register = () => {
         <div className='formWrapper'>
           <span className='logo'>Chat app</span>
           <span className='title'>Register</span>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input type="text" placeholder='display name'/>
             <input type="email" placeholder='email'/>
             <input type="password" placeholder='password'/>
