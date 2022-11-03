@@ -43,7 +43,7 @@ uploadTask.on(
     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
       await  updateProfile(res.user,{
         displayName,
-        photoURL:downloadURL
+        photoURL:downloadURL,
 
 
       });
