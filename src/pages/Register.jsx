@@ -1,11 +1,16 @@
 import React from 'react'
 import Add from "../img/addimage.png"
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import {auth} from "../firebase"
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {auth , storage} from "../firebase"
+import { useState } from 'react';
+import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const Register = () => {
+  const [err, setErr] = useState(false) ; 
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async(e) =>{
+
+   
     e.preventDefault(); // do not refresh the page 
     const displayName = e.target[0].value;
     const email = e.target[1].value;
@@ -13,17 +18,49 @@ const Register = () => {
     const file = e.target[3].files[0];
 
 
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+    try{
+      const res = await  createUserWithEmailAndPassword(auth, email, password)
+     
+
+
+const storageRef = ref(storage, displayName);
+
+const uploadTask = uploadBytesResumable(storageRef, file);
+
+// Register three observers:
+// 1. 'state_changed' observer, called any time the state changes
+// 2. Error observer, called on failure
+// 3. Completion observer, called on successful completion
+uploadTask.on(
+
+ 
+  (error) => {
+    setErr(true) ; 
+   
+  }, 
+  () => {
+   
+    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+      await  updateProfile(res.user,{
+        displayName,
+        photoURL:downloadURL
+
+
+      });
+    });
+  }
+);
+  
+
+
+
+    }catch (err){
+
+      setErr(true) ; 
+
+    }
+
+ 
 
   }
 
@@ -46,6 +83,7 @@ createUserWithEmailAndPassword(auth, email, password)
               <span>Add an avatar</span>
             </label>
             <button>sign in</button>
+            {err && <span>sth went wrong</span>}
 
           </form>
          <p> you do  have an account ? Login</p>
