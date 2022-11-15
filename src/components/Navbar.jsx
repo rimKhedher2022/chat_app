@@ -1,4 +1,6 @@
+import { signOut } from 'firebase/auth'
 import React from 'react'
+import { auth } from '../firebase'
 
 const Navbar = () => {
   return (
@@ -7,7 +9,8 @@ const Navbar = () => {
       <div className="user">
         <img src="https://i11.haber7.net//haber/haber7/photos/2020/53/Ues00_1609399241_7764.jpg"  alt=''/>
         <span>jhon</span>
-        <button>logout</button>
+        <button onClick = {()=>signOut(auth)}> logout </button> 
+        {/* signOut : function from firebase */}
       </div>
     </div>
   )

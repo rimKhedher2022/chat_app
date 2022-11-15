@@ -13,7 +13,7 @@ const Register = () => {
   // The setState (setErr ) function is used to update the state. 
 // It accepts a new state value and enqueues a re-render of the component.
   const [err, setErr] = useState(false) ; 
-  const navigate = useNavigate
+  const navigate = useNavigate();
 
 
   const handleSubmit = async(e) =>{
