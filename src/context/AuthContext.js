@@ -24,15 +24,22 @@ export const AuthContextProvider = ({children}) =>{
 
 
 useEffect(()=>{
-    onAuthStateChanged(auth,(user) =>{
+   const unsub = onAuthStateChanged(auth,(user) =>{
         setCurrentUser(user);
         console.log(user)
     });
+return () =>{
+   unsub();
+};
+
 },[]);
 
 // the component (children) can reach current user
+
+return (
 <AuthContext.Provider value={currentUser}>
     {children}
 </ AuthContext.Provider>
+)
 
 }; // children = the component
