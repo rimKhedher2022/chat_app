@@ -12,7 +12,7 @@ export const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) =>{
 
-  const [currentUser,setCurrentUser] = useState({}) // setCurrentUser to update the user 
+  const [currentUser,setCurrentUser] = useState({}); // setCurrentUser to update the user 
 
 
 //   In most scenarios using Authentication, 
@@ -24,10 +24,11 @@ export const AuthContextProvider = ({children}) =>{
 
 
 useEffect(()=>{
-   const unsub = onAuthStateChanged(auth,(user) =>{
+   const unsub = onAuthStateChanged(auth,(user) => {
         setCurrentUser(user);
         console.log(user)
     });
+
 return () =>{
    unsub();
 };
@@ -36,10 +37,11 @@ return () =>{
 
 // the component (children) can reach current user
 
-return (
-<AuthContext.Provider value={currentUser}>
-    {children}
-</ AuthContext.Provider>
-)
+        return (
+
+        <AuthContext.Provider value={{currentUser}}>
+            {children}
+        </ AuthContext.Provider>
+        );
 
 }; // children = the component

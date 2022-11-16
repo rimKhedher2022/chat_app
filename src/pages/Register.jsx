@@ -5,7 +5,7 @@ import {auth , storage , db} from "../firebase"
 import { useState } from 'react';
 import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore"; 
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 
@@ -102,11 +102,11 @@ uploadTask.on(
               <img src={Add} alt="" />
               <span>Add an avatar</span>
             </label>
-            <button>sign in</button>
+            <button>sign up</button>
             {err && <span>sth went wrong</span>}
 
           </form>
-         <p> you do  have an account ? Login</p>
+         <p> you do  have an account ? <Link to="/login">login</Link></p>
         </div>
       </div>
     </div>

@@ -1,11 +1,16 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from 'react';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase';
 
 
 
 
 const Login = () => {
+
+  // hala@gmail.com
+  // 123456789
 
   const [err, setErr] = useState(false) ; 
   const navigate = useNavigate();
@@ -19,7 +24,8 @@ const Login = () => {
 
 
     try{
-     
+       await signInWithEmailAndPassword(auth, email, password)
+       navigate("/")
 
     }catch (err){
 
@@ -45,9 +51,12 @@ const Login = () => {
             <input type="password" placeholder='password'/>
             
 
-            <button>log in</button>
+            <button>sign in</button>
+            {err && <span>sth went wrong</span>}
 
           </form>
+
+          <p> you don't  have an account ? <Link to="/register">register</Link></p>
         
         </div>
       </div>

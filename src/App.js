@@ -14,13 +14,16 @@ import {useContext} from "react"
 
 
 function App() {
-  const {currentUser} = useContext(AuthContext)
+
+  const { currentUser } = useContext(AuthContext);
   
  const ProtectedRoute = ({children}) => {
    if(!currentUser){
-    return <Navigate to="/login" />
+    return <Navigate to="/login" />;
    }
- }
+
+   return children;
+ };
 
 
 
@@ -32,7 +35,8 @@ function App() {
               <ProtectedRoute>
                  <Home/>
               </ProtectedRoute>
-            } />
+            }
+             />
 
             <Route path="login" element={<Login/>}/>
             <Route  path="register" element={<Register/>}/>
